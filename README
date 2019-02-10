@@ -1,0 +1,12 @@
+
+Installation
+    $ npm i -g nodemon mocha watchify browserify forever
+
+Start
+    $ npm start
+
+Watch (dev)
+    $ npm run watch
+
+Build (prod)
+    $ npm run build
