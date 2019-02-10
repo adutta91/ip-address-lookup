@@ -1,0 +1,151 @@
+/* iPads (portrait and landscape) ----------- */
+@media only screen
+    and (min-device-width : 768px)
+    and (max-device-width : 1024px) {
+    .navbar-brand img {
+        width: 80%;
+    }
+    .modal_dialog {
+        max-width: 97%;
+        max-height: 90%;
+    }
+    .navbar-expand-md .navbar-nav .nav-link {
+        margin-right: 0;
+    }
+    .navbar-expand-md .nav-item{
+        padding-right: 1em;
+    }
+    .vin-check-wrap .heading h1 {
+        font-size: 30px;
+    }
+    .vin-check-wrap {
+        font-size: 16px;
+    }
+    #vin_number {
+        font-size: 25px;
+    }
+    .account-page .vin-input-box{
+        width: 336px;
+    }
+    .account-page .keyword-input {
+        width: 168px;
+    }
+    .account-page td,
+    .account-page th,
+    .account-page td p,
+    .account-page th p,
+    .account-page .btn-link,
+    .report-page p.subline,
+    .report-page .disclaimer p,
+    .report-page .disclaimer li{
+        font-size: 0.6rem !important;
+    }
+    .report-page .sidebar .list-group-item:hover, .report-page .sidebar .list-group-item.active{
+        font-size: 0.8rem;
+    }
+    .dashboard-box {
+        padding: 0.5rem;
+    }
+    .flex-sub-main h2 img {
+        width: 20px;
+    }
+    .homepage #app {
+        width: 571px;
+    }
+    .homepageBgImg figure {
+        padding-bottom: 45%;
+    }
+    .homepage-container {
+        left: 0;
+    }
+    .vin-check-wrap .heading .title {
+        text-shadow: none;
+    }
+    .vin-check-wrap .heading {
+        padding-top: 1rem;
+    }
+    .vin-check-wrap .heading .title {
+        font-size: 1.5rem;
+        margin-bottom: 0;
+    }
+    .vin-check {
+        padding: 1rem;
+    }
+    .enter_vin h1 {
+        font-size: 1.2rem;
+    }
+    .lightbox_modal {
+        top: 50%;
+        /* transform: translateY(10%); */
+        transform: none;
+    }
+}
+
+/* Portrait */
+@media only screen
+  and (min-device-width: 768px)
+  and (max-device-width: 1024px)
+  and (orientation: portrait){
+    .homepageBgImg figure {
+        padding-bottom: 50%;
+        background-size: 115%;
+        background-position: center;
+    }
+    .navbar-dark .navbar-nav .nav-link {
+        font-size: 0.8rem;
+    }
+    .navbar-expand-md .nav-item {
+        padding-right: 0.75rem;
+    }
+    .vin-check-wrap {
+        font-size: 1rem;
+        transform: scale(0.85);
+        left: 0;
+    }
+    .what-included h3 {
+        font-size: 1rem;
+    }
+    .what-included .desc {
+        font-size: 0.9rem;
+    }
+    .section-start-protection .tier .fee {
+        font-size: 3rem;
+    }
+    .section-start-protection .tier .desc {
+        font-size: 1rem;
+    }
+    .flex-container {
+        /* min-height: auto; */
+        margin-bottom: 1rem;
+    }
+    footer {
+        padding: 0 1rem !important;
+    }
+    footer .title {
+        font-size: 0.9rem;
+    }
+    footer .company-info p,
+    footer .company-info a{
+        font-size: 0.8rem;
+    }
+    footer .company-info img{
+        transform: scale(0.9);
+    }
+}
+
+/* Landscape */
+@media only screen
+and (min-device-width : 768px)
+and (max-device-width : 1024px)
+and (orientation : landscape) {
+    .account-page td,
+    .account-page th,
+    .account-page td p,
+    .account-page th p,
+    .account-page .btn-link,
+    .report-page p.subline,
+    .report-page .disclaimer p,
+    .report-page .disclaimer li{
+        font-size: 0.8rem !important;
+    }
+}

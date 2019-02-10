@@ -1,0 +1,18 @@
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 1024px){
+    .homepage #app{
+        width: 618px;
+        padding-top: 1rem;
+    }
+    .table-responsive {
+        display: table;
+    }
+    .page-box-s{
+        width: 657px;
+    }
+    .billing_info{
+        width: 80%;
+        margin: 0 auto;
+        padding-bottom: 2rem;
+    }
+}
