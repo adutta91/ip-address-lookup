@@ -10,3 +10,6 @@ Watch (dev)
 
 Build (prod)
     $ npm run build
+
+Test
+    $ npm run test
