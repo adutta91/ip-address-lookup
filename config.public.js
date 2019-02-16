@@ -3,6 +3,7 @@ module.exports = {
     port        : '3000',
     site_name   : "IP Address Lookup",
     site_url    : 'http: //localhost',
+    datafile    : './data/data.db', // data.db | bigfile.txt | ip-address.csv
     log : {
         "file"       : "./var/log/system.log",
         "level"      : "debug",

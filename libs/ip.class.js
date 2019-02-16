@@ -2,6 +2,8 @@
 
 const fs        = require('fs');
 const readline  = require('readline');
+
+const config    = require('../config.public.js')
 const BaseClass = require('./base.class.js');
 const _Func     = require('./functions.js');
 
@@ -9,7 +11,7 @@ class ipLookup extends BaseClass {
     constructor() {
         super();
 
-        this.file = './data/ip-address.csv'; // './data/bigfile.txt' | './data/ip-address.csv'
+        this.file = config.datafile
 
         this.data = [];
 
