@@ -1,27 +1,12 @@
+/*jshint esversion: 6 */
+
 const moment = require('moment')
 const config = require("../config.public.js")
 
 class Functions {
 
     constructor(){
-
-        this.httpCode = {
-            done    : 204, /* No Content - The server successfully processed the request and is not returning any content. */
-            ok      : 200,
-            fail    : 400,
-            unauth  : 401,
-            error   : 500,
-        }
-
-        this.status = {
-            ok      : 'ok',
-            fail    : 'fail',
-            unauth  : 'unauth'
-        }
-
-        this.httpMessage = {
-            unable_place_order : "There was an error processing your order. Please contact us or try again later."
-        }
+        
     }
 
     static getInstance(){
@@ -38,6 +23,77 @@ class Functions {
         }else{
             return config.error.error500
         }
+    }
+
+    httpGet(url) {
+        return new Promise((resolve, reject) => {
+            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
+            var req = new XMLHttpRequest()
+            req.open("GET", url);
+            req.timeout = 120000;
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req)
+                } else {
+                    reject(req)
+                }
+            }
+            req.send();
+        })
+    }
+    
+    httpPost(url, params={}) {
+        return new Promise((resolve, reject) => {
+            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
+            var req = new XMLHttpRequest()
+            req.open("POST", url);
+            req.timeout = 120000;
+            req.setRequestHeader('Content-type','application/json; charset=utf-8');
+            req.send(JSON.stringify(params));
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req)
+                } else {
+                    reject(req)
+                }
+            }        
+        })
+    }
+    
+    httpPut(url, params={}) {
+        return new Promise((resolve, reject) => {
+            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
+            var req = new XMLHttpRequest()
+            req.open("PUT", url);
+            req.timeout = 120000;
+            req.setRequestHeader('Content-type','application/json; charset=utf-8');
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req)
+                } else {
+                    reject(req)
+                }
+            }
+            req.send(JSON.stringify(params));
+        })
+    }
+    
+    httpDelete(url, params={}) {
+        return new Promise((resolve, reject) => {
+            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
+            var req = new XMLHttpRequest()
+            req.open("DELETE", url);
+            req.timeout = 120000;
+            req.setRequestHeader('Content-type','application/json; charset=utf-8');
+            req.onload = function() {
+                if (req.status == 200) {
+                    resolve(req)
+                } else {
+                    reject(req)
+                }
+            }
+            req.send(JSON.stringify(params));
+        })
     }
 
     formatDate(str, longDate, withTime){
@@ -111,6 +167,8 @@ class Functions {
             return ip;
         }
     }
+
+
 
 }
 
