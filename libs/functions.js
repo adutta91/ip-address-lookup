@@ -3,6 +3,7 @@
 const moment = require('moment')
 const config = require("../config.public.js")
 
+
 class Functions {
 
     constructor(){
@@ -17,123 +18,44 @@ class Functions {
         return this.instance
     }
 
-    handelError(map){
-        if(map.error && typeof map.error == 'string' ){
-            return map.error
-        }else{
-            return config.error.error500
-        }
-    }
-
-    httpGet(url) {
-        return new Promise((resolve, reject) => {
-            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
-            var req = new XMLHttpRequest()
-            req.open("GET", url);
-            req.timeout = 120000;
-            req.onload = function() {
-                if (req.status == 200) {
-                    resolve(req)
-                } else {
-                    reject(req)
-                }
-            }
-            req.send();
-        })
-    }
-    
-    httpPost(url, params={}) {
-        return new Promise((resolve, reject) => {
-            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
-            var req = new XMLHttpRequest()
-            req.open("POST", url);
-            req.timeout = 120000;
-            req.setRequestHeader('Content-type','application/json; charset=utf-8');
-            req.send(JSON.stringify(params));
-            req.onload = function() {
-                if (req.status == 200) {
-                    resolve(req)
-                } else {
-                    reject(req)
-                }
-            }        
-        })
-    }
-    
-    httpPut(url, params={}) {
-        return new Promise((resolve, reject) => {
-            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
-            var req = new XMLHttpRequest()
-            req.open("PUT", url);
-            req.timeout = 120000;
-            req.setRequestHeader('Content-type','application/json; charset=utf-8');
-            req.onload = function() {
-                if (req.status == 200) {
-                    resolve(req)
-                } else {
-                    reject(req)
-                }
-            }
-            req.send(JSON.stringify(params));
-        })
-    }
-    
-    httpDelete(url, params={}) {
-        return new Promise((resolve, reject) => {
-            // var xmlhttprequest = require("xmlhttprequest").XMLHttpRequest;
-            var req = new XMLHttpRequest()
-            req.open("DELETE", url);
-            req.timeout = 120000;
-            req.setRequestHeader('Content-type','application/json; charset=utf-8');
-            req.onload = function() {
-                if (req.status == 200) {
-                    resolve(req)
-                } else {
-                    reject(req)
-                }
-            }
-            req.send(JSON.stringify(params));
-        })
-    }
-
     formatDate(str, longDate, withTime){
         if(str){
             if(longDate && withTime){
-                return moment(str).format( "MMMM D, YYYY, h:mm a" )
+                return moment(str).format( "MMMM D, YYYY, h:mm a" );
             }else if(longDate){
-                return moment(str).format( "MMMM D, YYYY" )
+                return moment(str).format( "MMMM D, YYYY" );
             }else if(withTime){
-                return moment(str).format( "MM/DD/YYYY h:mm a" )
+                return moment(str).format( "MM/DD/YYYY h:mm a" );
             }else{
-                return moment(str).format( "MM/DD/YYYY" )
+                return moment(str).format( "MM/DD/YYYY" );
             }
         }
     }
 
     formatTime(str){
         // 09:47:20
-        var arr = str.split(":")
-        var amorpm  = arr[0] >= 12? 'PM' : 'AM'
-        var hour    = arr[0] > 12 ? arr[0] - 12 : arr[0]
-        var minutes = arr[1]
+        var arr = str.split(":");
+        var amorpm  = arr[0] >= 12? 'PM' : 'AM';
+        var hour    = arr[0] > 12 ? arr[0] - 12 : arr[0];
+        var minutes = arr[1];
 
-        return `${hour}:${minutes}${amorpm}`
+        return `${hour}:${minutes}${amorpm}`;
 
     }
 
     isNumber(num){
         if(num.toString().match(/^\d+$/) || num.toString().match(/^\d+\,\d+$/)){
-            return true
+            return true;
         }else if(num.toString().match(/^\d+\.\d+$/)){
-            return true
+            return true;
         }
     }
 
     purifiedNumber(number){
         if(number){
-            return parseFloat(number.toString().replace(/,/g, ''))
+            return parseFloat(number.toString().replace(/,/g, ''));
         }else{
-            return parseFloat(number)
+            return parseFloat(number);
         }
     }
 
@@ -148,7 +70,7 @@ class Functions {
 
     ucfirst(str){
         if(str && str.length){
-            return str.toLowerCase().charAt(0).toUpperCase() + str.toLowerCase().slice(1)
+            return str.toLowerCase().charAt(0).toUpperCase() + str.toLowerCase().slice(1);
         }
 
     }
