@@ -17,10 +17,13 @@ class ipLookup extends BaseClass {
         this.loadData()
     }
 
+    /**
+     * Validating IP address
+     * @param {string} ip_address 
+     */
     isAnIpAdress(ip_address){
         if(ip_address && ip_address.length){
             let result = ip_address.match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/g);
-            // console.log(ip_address, result);
 
             if(result){// matched
                 let arr = ip_address.split('.');
@@ -38,6 +41,10 @@ class ipLookup extends BaseClass {
         }
     }
 
+    /**
+     * Convert address to number
+     * @param {string} ip_address 
+     */
     address2Number(ip_address) {
         try {
             var arr = ip_address.split(".");
@@ -61,6 +68,10 @@ class ipLookup extends BaseClass {
         }
     }
 
+    /**
+     * Convert number to address
+     * @param {int} ip_number 
+     */
     number2Address(ip_number) {
         var stack = [];
         for (var i = 0; i < 4; i++) {
@@ -71,62 +82,13 @@ class ipLookup extends BaseClass {
         return stack.join('.');
     }
 
+    /**
+     * Convert byte to MB.
+     * @param {int} size 
+     */
     filesize(size) {
         var result = parseFloat(size / Math.pow(1024, 2)).toFixed(2); //mb
         return `${result} MB`;
-    }
-
-    makeABigFile(n) {
-        return new Promise((resolve, reject) => {
-            var writerStream = fs.createWriteStream(this.file);
-
-            for (var i = 0; i < n; i++) {
-                let str = _Func.generatePassword(128);
-                writerStream.write(str + "\n");
-            }
-
-            writerStream.end();
-
-            writerStream.on('finish', function () {
-                console.log("Write completed.");
-                resolve(i);
-            });
-
-            writerStream.on('error', function (err) {
-                console.log(err.stack);
-                reject(err);
-            });
-        });
-    }
-
-    CSVtoArray(text) {
-        var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
-        var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
-
-        if (!re_valid.test(text)){
-            return null;
-        }
-
-        var a = [];
-        text.replace(re_value, function (m0, m1, m2, m3) {
-            if (m1 !== undefined){
-                a.push(m1.replace(/\\'/g, "'"));
-            }
-            else if (m2 !== undefined) {
-                a.push(m2.replace(/\\"/g, '"'));
-            }
-            else if (m3 !== undefined){
-                a.push(m3);
-            }
-
-            return '';
-        });
-
-        if (/,\s*$/.test(text)){
-            a.push('');
-        }
-
-        return a;
     }
 
     binarySearch(ipNum){
@@ -163,33 +125,23 @@ class ipLookup extends BaseClass {
     }
 
     lookupIPAddress(ipAddress){
-        console.log(3, ipAddress);
-
         try{        
             let ipNum = this.address2Number(ipAddress);
-            console.log(4, ipNum);
-    
             return this.binarySearch(ipNum);
         }
         catch(error){
-            console.log(error);
-            
+            thorw(error);            
         }
-
     }
 
     loadData() {
-        // Read file with readline and stream
+        // Read data file with readline and stream
 
         return new Promise((resolve, reject) => {
-            if(this.data.length){
-                console.log('data already loaded');
-
-                resolve(this.data.length)
+            if(this.data.length){ // data already loaded.
+                resolve(this.data.length);
             }
             else{
-                console.log('load data...');
-
                 var n = 0;
                 let rl = readline.createInterface({
                     input: fs.createReadStream(this.file),
@@ -200,19 +152,9 @@ class ipLookup extends BaseClass {
                 rl.on('line', (str) => {
                     n++;
                     this.data.push(str);
-                    // console.log(str);
                 });
 
                 rl.on('close', () => {
-                    // console.log('end: ', n);
-                    // console.log('data[]:', this.data.length);
-
-                    // let str = this.data[this.data.length-1]
-                    // console.log(str);
-
-                    // let arr = str.split('.')
-                    // console.log(arr);
-
                     resolve(n);
                 });
             }
@@ -324,6 +266,59 @@ class ipLookup extends BaseClass {
     //         });
     //     });
     // }
+
+    makeABigFile(n) {
+        return new Promise((resolve, reject) => {
+            var writerStream = fs.createWriteStream(this.file);
+
+            for (var i = 0; i < n; i++) {
+                let str = _Func.generatePassword(128);
+                writerStream.write(str + "\n");
+            }
+
+            writerStream.end();
+
+            writerStream.on('finish', function () {
+                console.log("Write completed.");
+                resolve(i);
+            });
+
+            writerStream.on('error', function (err) {
+                console.log(err.stack);
+                reject(err);
+            });
+        });
+    }
+
+    CSVtoArray(text) {
+        var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
+        var re_value = /(?!\s*$)\s*(?:'([^'\\]*(?:\\[\S\s][^'\\]*)*)'|"([^"\\]*(?:\\[\S\s][^"\\]*)*)"|([^,'"\s\\]*(?:\s+[^,'"\s\\]+)*))\s*(?:,|$)/g;
+
+        if (!re_valid.test(text)){
+            return null;
+        }
+
+        var a = [];
+        text.replace(re_value, function (m0, m1, m2, m3) {
+            if (m1 !== undefined){
+                a.push(m1.replace(/\\'/g, "'"));
+            }
+            else if (m2 !== undefined) {
+                a.push(m2.replace(/\\"/g, '"'));
+            }
+            else if (m3 !== undefined){
+                a.push(m3);
+            }
+
+            return '';
+        });
+
+        if (/,\s*$/.test(text)){
+            a.push('');
+        }
+
+        return a;
+    }
 
 }
 
