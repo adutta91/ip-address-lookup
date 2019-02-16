@@ -12,7 +12,7 @@ yarn-debug.log*
 yarn-error.log*
 
 # webpack bundle file
-public/js/dist/
+public/js/dist/*.js
 
 # Runtime data
 pids
