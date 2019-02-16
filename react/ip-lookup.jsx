@@ -1,17 +1,18 @@
 /*jshint esversion: 6 */
 
 const React  = require('react');
-const config = require('../config.public.js')
+const config = require('../config.public.js');
 
-const Base = require('./base.jsx')
+const Base = require('./base.jsx');
+const _Func  = require("../libs/functions.js");
 
 class IpLookup extends Base {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
-            ipAddress: 123
-        }
+            ipAddress: '73.254.88.197'
+        };
     }
 
     componentDidUpdate(){
@@ -19,35 +20,34 @@ class IpLookup extends Base {
     }
 
     changeIp(e){
-        this.setState({ipAddress: e.target.value})
+        this.setState({ipAddress: e.target.value});
     }
 
     handleSubmit(e){
         e.preventDefault();
 
-        let params = {
-            ip: this.state.ipAddress
-        };
+        if(this.state.ipAddress){
+            var params = {
+                ip: this.state.ipAddress
+            };
 
-        let options = {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(params)
-        };
+            this.httpPost(config.url.lookup, params)
+            .then(res=>{
+                let result = this.handleResponse(res);
+                this.setState({result})
+            }).catch(res=>{
+                let error = this.handelError(res);
+                this.setState({error});
+            });
+        }
+        else{
+            this.setState({error: `Please enter an IP address.`});            
+        }        
 
-        fetch(config.url.lookup, options)
-        .then(res=>{
-            return res.json();
-        })
-        .then(result=>{
-            console.log(result);            
-        })
     }
 
     showLookupBox(){
-        let stack =[]
+        let stack =[];
 
         stack.push (
             <form className="card p-2" onSubmit={ this.handleSubmit.bind(this) } >
