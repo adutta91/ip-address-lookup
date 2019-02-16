@@ -1,7 +1,6 @@
 /*jshint esversion: 6 */
 
 const fs = require('fs');
-const es = require('event-stream');
 const readline = require('readline');
 
 const BaseClass = require('./base.class.js')
