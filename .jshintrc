@@ -1,5 +1,8 @@
 {
-
-    "lastsemic"     : true,     // true: Tolerate omitting a semicolon for the last statement of a 1-line block
-    "globals"       : {}        // additional predefined global variables
+    "strict"   : true,
+    "lastsemic": true, 
+    "curly"    : true,
+    "eqeqeq"   : true,
+    "esversion": 6,     //This option is used to specify the ECMAScript version to which the code must adhere. 
+    "globals"  : {}
 }
