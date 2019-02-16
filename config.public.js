@@ -1,8 +1,8 @@
 module.exports = {
-    host      : 'localhost',
-    port      : '3000',
-    site_name : "IP Address Lookup",
-    site_url  : 'http://localhost',
+    host        : 'localhost',
+    port        : '3000',
+    site_name   : "IP Address Lookup",
+    site_url    : 'http: //localhost',
     log : {
         "file"       : "./var/log/system.log",
         "level"      : "debug",
@@ -12,6 +12,18 @@ module.exports = {
     },
     url : {
         lookup : "/lookup",
+    },
+    error:{
+        error401 : "Access denied. You are not authorized to access. Please sign in your account and try again.",
+        error403 : "Access forbidden. You do not have permission to access.",
+        error500 : "An unexpected internal error has occurred. Please try again later.",
+    },
+    httpCode: {
+        done    : 204, /* No Content - The server successfully processed the request and is not returning any content. */
+        ok      : 200,
+        fail    : 400,
+        unauth  : 401,
+        error   : 500,
     }
 
 }
