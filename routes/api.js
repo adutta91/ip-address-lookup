@@ -19,18 +19,24 @@ router.post(config.url.lookup, (req, res) => {
         logger.system.info(`IP lookup *** start `);
 
         var data = req.body;
+        // console.log('data: ', data);        
 
         if(data.ip){
-            res.send(data);
+            if(_Ip.isAnIpAdress(data.ip)){
+                let result = _Ip.lookupIPAddress(data.ip)
+                res.json(result);
+            }
+            else{
+                throw('Invalid IP address.')
+            }            
         }
         else{
-            res.status(config.httpCode.fail).send('IP address is required.');
-        }        
-
+            throw('IP address is required.');
+        }
     } catch (err) {
         logger.system.error(err);
+        res.status(config.httpCode.fail).send(err);
     }
-
-})
+});
 
 module.exports = router;
