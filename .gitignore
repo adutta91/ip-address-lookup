@@ -1,11 +1,15 @@
+# Data
+data/README
+data/*.txt
+data/*.csv
+
+
 # Logs
 logs
 *.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-# var/log/*
-
 
 # webpack bundle file
 public/js/dist/
