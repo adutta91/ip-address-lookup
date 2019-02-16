@@ -18,6 +18,27 @@ class ipLookup extends BaseClass {
         this.loadData()
     }
 
+    isAnIpAdress(ip_address){
+        if(ip_address && ip_address.length){
+            let result = ip_address.match(/\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}/g);
+            // console.log(ip_address, result);
+
+            if(result){// matched
+                let arr = ip_address.split('.');
+                for (const n of arr) {
+                    if(n>255){
+                        return false;
+                    }
+                    
+                }
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+    }
+
     address2Number(ip_address) {
         try {
             var arr = ip_address.split(".");
@@ -78,8 +99,6 @@ class ipLookup extends BaseClass {
             });
         });
     }
-
-    
 
     CSVtoArray(text) {
         var re_valid = /^\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*(?:,\s*(?:'[^'\\]*(?:\\[\S\s][^'\\]*)*'|"[^"\\]*(?:\\[\S\s][^"\\]*)*"|[^,'"\s\\]*(?:\s+[^,'"\s\\]+)*)\s*)*$/;
@@ -145,8 +164,19 @@ class ipLookup extends BaseClass {
     }
 
     lookupIPAddress(ipAddress){
-        let ipNum = this.address2Number(ipAddress);
-        return this.binarySearch(ipNum);
+        console.log(3, ipAddress);
+
+        try{        
+            let ipNum = this.address2Number(ipAddress);
+            console.log(4, ipNum);
+    
+            return this.binarySearch(ipNum);
+        }
+        catch(error){
+            console.log(error);
+            
+        }
+
     }
 
     loadData() {
