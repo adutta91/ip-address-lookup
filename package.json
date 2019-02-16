@@ -19,6 +19,7 @@
         "cookie-parser": "^1.4.3",
         "css-loader": "^0.28.11",
         "ejs": "^2.5.7",
+        "event-stream": "^4.0.1",
         "express": "^4.16.4",
         "react": "^16.4.1",
         "react-bootstrap": "^0.32.4",
