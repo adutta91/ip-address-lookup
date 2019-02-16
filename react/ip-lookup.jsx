@@ -11,7 +11,7 @@ class IpLookup extends Base {
         super(props);
 
         this.state = {
-            ipAddress: '73.254.88.197'
+            ipAddress: '73.1.1.1'
         };
     }
 
