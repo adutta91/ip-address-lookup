@@ -1,6 +1,7 @@
 
 Installation
     $ npm i -g nodemon mocha watchify browserify forever
+    $ npm install
 
 Start
     $ npm start
