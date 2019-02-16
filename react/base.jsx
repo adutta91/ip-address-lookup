@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */
+
 const React  = require('react');
 const config = require('../config.public.js')
 
@@ -9,6 +11,118 @@ class Base extends React.Component {
 
     componentDidUpdate(){
 
+    }
+
+    handelError(res){
+        var dict = JSON.parse(res.responseText);
+
+        if(dict.error && typeof dict.error == 'string' ){
+            return dict.error;
+        }else{
+            return config.error.error500;
+        }
+    }
+
+    handleResponse(res){
+        return res;
+    }
+
+    obj2querystr(obj){
+        return Object.keys(obj).map((key)=>{
+            return key+"="+obj[key]
+        }).join('&');
+    }
+
+    httpGet(url, params={}) {
+        const self = this;
+
+        return new Promise((resolve, reject) => {
+            if(params){
+                var queryStr = this.obj2querystr(params);
+
+                if(queryStr){
+                    url += "?"+queryStr;
+                }
+            }            
+
+            fetch(url)
+            .then(res=>{
+               resolve(res.json())
+            })
+            .catch(err=>{
+                rejrect(err)
+            })
+        })
+    }
+    
+    httpPost(url, params={}) {
+        /**
+         * http request with fetch
+         */
+        return new Promise((resolve, reject) => {
+            let options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+            };
+    
+            fetch(url, options)
+            .then(res=>{
+               resolve(res.json());
+            })
+            .catch(err=>{
+                rejrect(err);
+            });
+        });
+    
+    }
+
+    httpPut(url, params={}) {
+        /**
+         * http request with fetch
+         */
+        return new Promise((resolve, reject) => {
+            let options = {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+            };
+    
+            fetch(url, options)
+            .then(res=>{
+               resolve(res.json());
+            })
+            .catch(err=>{
+                rejrect(err);
+            });
+        });    
+    }
+
+    httpDelete(url, params={}) {
+        /**
+         * http request with fetch
+         */
+        return new Promise((resolve, reject) => {
+            let options = {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(params)
+            };
+    
+            fetch(url, options)
+            .then(res=>{
+               resolve(res.json());
+            })
+            .catch(err=>{
+                rejrect(err);
+            });
+        });    
     }
 
     alert(message, type){
