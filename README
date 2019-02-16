@@ -19,7 +19,12 @@
 ```
 
 ### Step 3 - Start App
+```
     $ npm start
+```
 
 ### Unit Test
+```
     $ npm run test
+```
+
