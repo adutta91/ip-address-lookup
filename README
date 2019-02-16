@@ -1,17 +1,30 @@
 
-Step 1 - Installation
+### Step 1 - Installation
+```
     $ npm i -g nodemon mocha watchify browserify forever
     $ npm install
+```
 
-Step 2 - run one of following
-    Watch (dev)
+### Step 2 - run one of following
+    
+```
+    // Watch (dev)
     $ npm run watch
+```
 
-    Build (prod)
+    
+```
+    // Build (prod)
     $ npm run build
+```
 
-Step 3 - Start App
+### Step 3 - Start App
+```
     $ npm start
+```
 
-Unit Test
+### Unit Test
+```
     $ npm run test
+```
+
