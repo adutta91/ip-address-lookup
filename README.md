@@ -5,7 +5,7 @@
     $ npm install
 ```
 
-### Step 2 - run one of following
+### Step 2 - Run one of followings
     
 ```
     // Watch (dev)
