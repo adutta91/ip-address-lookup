@@ -1,10 +1,9 @@
 /*jshint esversion: 6 */
 
-const fs = require('fs');
-const readline = require('readline');
-
-const BaseClass = require('./base.class.js')
-const _Func = require('./functions.js');
+const fs        = require('fs');
+const readline  = require('readline');
+const BaseClass = require('./base.class.js');
+const _Func     = require('./functions.js');
 
 class ipLookup extends BaseClass {
     constructor() {
