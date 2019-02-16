@@ -50,7 +50,7 @@ class IpLookup extends Base {
         let stack =[];
 
         stack.push (
-            <form className="card p-2" onSubmit={ this.handleSubmit.bind(this) } >
+            <form key="ip_form" className="card p-2" onSubmit={ this.handleSubmit.bind(this) } >
                 <div className="input-group">
                     <input type="text" className="form-control search-input-box" placeholder="Enter an IP Address. Ex. 1.12.123.2" 
                            value={this.state.ipAddress} onChange={this.changeIp.bind(this) } />
@@ -62,7 +62,7 @@ class IpLookup extends Base {
         )
 
         stack.push(
-            <div className="input-group text-color-secondary p2">
+            <div key="label_box" className="input-group text-color-secondary p2">
                 <label className="small">IPv4 address only.</label>
             </div>
         )
@@ -73,7 +73,7 @@ class IpLookup extends Base {
     render(){
         let stack = []
         stack.push (
-            <header className="masthead mb-auto">
+            <header key="header" className="masthead mb-auto">
                 <div className="inner">
                     <h3 className="masthead-brand">IP Address Lookup</h3>
                     <nav className="nav nav-masthead justify-content-center">
@@ -84,13 +84,13 @@ class IpLookup extends Base {
         )
 
         stack.push (
-            <main role="main" className="inner cover">
+            <main key="main" role="main" className="inner cover">
                 {this.showLookupBox()}
             </main>
         )
 
         stack.push (
-            <footer className="mastfoot mt-auto">
+            <footer key="footer" className="mastfoot mt-auto">
                 <div className="inner">
                     <p>Lookup physical location of IP address, by <a href="https://github.com/baybird">@baybird</a>.</p>
                 </div>
