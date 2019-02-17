@@ -3,32 +3,40 @@
 var assert = require('assert');
 // var expect = require('expect');
 
-describe("IP class", ()=>{
+describe("IP class ***********************", ()=>{
     var _Ip = require("../libs/ip.class.js");
 
     const ipAddress = '202.186.13.4'
     const ipNum = 3401190660;
 
-    describe("Validate an IP number", ()=>{
-        it(`${ipAddress} is a valid IP address.`, (done)=>{
-            var result = _Ip.isAnIpAdress(ipAddress)
-            assert.ok(result)
-            done()
-        })// end it
+    describe("Validate IP address", ()=>{
+        let testCases = [
+            {
+                ip: '202.186.13.4',
+                result: true
+            },
+            {
+                ip: '202.186.13',
+                result: false
+            },
+            {
+                ip: '202.186.13.256',
+                result: false
+            },
+            {
+                ip: '202.186.13.0',
+                result: true
+            },
+        ]
 
-        var ipAddress2 = '202.186.13'
-        it(`${ipAddress2} is an invalid IP address.`, (done)=>{
-            var result = _Ip.isAnIpAdress(ipAddress2)
-            assert.ok(result != true);
-            done()
-        })// end it
+        testCases.forEach(testcase=>{
+            it(`${testcase.ip} is ${testcase.result?"a valid":"an invalid"} IP address.`, (done)=>{
+                var result = _Ip.isAnIpAdress(testcase.ip)
+                assert.ok(result == testcase.result)
+                done()
+            })// end it
+        })
 
-        var ipAddress2 = '202.186.13.256'
-        it(`${ipAddress2} is an invalid IP address.`, (done)=>{
-            var result = _Ip.isAnIpAdress(ipAddress2)
-            assert.ok(result != true);
-            done()
-        })// end it
     })
 
     // describe("Validate an IP number", ()=>{
